@@ -1,0 +1,13 @@
+.Movie{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Movie nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+}

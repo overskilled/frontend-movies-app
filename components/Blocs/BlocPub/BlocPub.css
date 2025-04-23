@@ -1,0 +1,36 @@
+.BlocPub{
+    color: white;
+    text-decoration: none;
+}
+.Blocpub{
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-position: 0 0;
+    justify-content: end;
+    align-items: start;
+    width: 250px;
+    height: 300px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, .1),0px 0px 3px 0px rgba(0, 0, 0, .3),0px 0px 5px 0px rgba(0, 0, 0, .5);
+}
+.descriptionBlocPub{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: start;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+.descriptionBlocPub > *{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+

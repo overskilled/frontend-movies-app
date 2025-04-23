@@ -1,0 +1,17 @@
+.BlocPoint{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    
+}
+.BlocPoint > *{
+    width: 10px;
+    height: 10px;
+    margin: 0px 2px;
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color .5s ease-in-out;
+}
+.BlocPoint > * :focus{
+    background-color: greenyellow;
+}
