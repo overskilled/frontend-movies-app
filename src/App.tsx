@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from '../pages/HOME/Home'
 import Movie from '../pages/Movie/Movie'
 import './App.css'
+import Form from '../components/Form/Form'
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} /> 
         <Route path='/movie' element={<Movie />} />
+        <Route path='/form' element={<Form />} />
       </Routes>
     </BrowserRouter>
   )

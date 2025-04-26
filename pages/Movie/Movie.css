@@ -1,13 +1,275 @@
 .Movie{
-    width: 100%;
+    /* border: 1px solid #ff0; */
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 20px;
+    overflow: hidden;
 }
-
+.Movie header{
+    width: 100%;
+    background-image: url(http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider-bg.jpg);
+    height: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    /* border: 1px solid #0f0; */
+}
 .Movie nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;  
+    /* height: 100%;  */
+}
+.Movie .MovieTitle{
+    height: 100%;
     width: 100%;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Movie .MovieTitle p{
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+}
+
+.Movie .MovieTitle p a{
+    color: #4280bf;   
+}
+/*****  gestion de la barre de recherche ******/
+.SearchBar{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    background-color: #233a50;
+    border: 4px solid #000;
+}
+.Bar{
+    width: 100%;
+    padding: 0;
+}
+.search-input{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+}
+.SearchBar select{
+    background-color: transparent;
+    border: none;
+    border-right: 1px solid #000;
+    color: white;
+}
+.SearchBar button{
+    border: none;
+    background-color: transparent;
+    padding-right: 30px;
+}
+
+/* gestion du main */
+.mainMovie{
+    /* border: 1px solid #00f; */
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    margin-top: 20px;
+}
+.sectionMovie{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin-top: 20px;
+    /* border: 1px solid #ff0; */
+}
+.asideMovie{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    width: 30%;
+    margin-top: 20px;
+    /* border: 1px solid #ff0; */
+}
+/*  gestion de la section */
+.BarMenu{
+    /* border: 1px solid #ff0; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 0.1px solid #fff;
+}
+.BarMenu select{
+    width: 40%;
+    background-color: transparent;
+    color: white;
+    padding-left: 5px;
+    margin-left: 5px;
+}
+.BarMenu select option{
+    color: white;
+    background-color: #233a50;
+}
+.BarMenu select option:hover{
+    /* background-color: #233a50; */
+}
+.BarMenu p strong{
+    color: #4280bf;
+    padding-top: 5px;
+}
+.BarMenu p{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid #f00; */
+    padding-left: 5px;
+}
+.blocstyle, .liststyle{
+    width: 40px;
+    display: flex;
+    justify-content: center;
+}
+.FilmMovie{
+    margin-top: 20px;
+    /* border: 1px solid #ff0; */
+}
+.FilmMovie ul{
+    list-style: none;
+}
+.FilmMovie ul li{
+    /* border: 1px solid #0ff; */
+}
+/*********** gestion de l'aside ***********/
+.BlocImage{
+    /* border: 1px solid #00f; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+}
+.BlocImage img{
+    width: 340px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 0;
+}
+.lienFacebook{
+    /* border: 1px solid #ff0; */
+    width: 340px;
+    margin-top: 20px;
+}
+.lienSuivre{
+    margin-top: 200px;
+    width: 340px;
+    /* border: 1px solid #ff0; */
+}
+/* gestion du footer de la movie page */
+.MovieFooter{
+    width: 100vw;
+    height: 400px;
+    background-image: url(http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.MovieFooterContainer{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.FooterMovie{
+    /* border: 1px solid #0ff; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 350px;
+}
+.footerListe{
+    /* border: 1px solid #ff0; */
+    display: flex;
+    padding-left: 0;
+    /* justify-content: space-around;  */
+    justify-content: center;
+    width: 100%;
+}
+.footerListe h4{
+    text-transform: uppercase;
+    color: white;
+}
+.footerListe li{
+    /* border: 1px solid #0f0; */
+    /* margin-right: 5px; */
+    list-style: none;
+    width: 200px;
+}
+.footerListe ul{
+    /* border: 1px solid #0f0; */
+    height: 100%;
+    width: 150px;
+    list-style: none;
+}
+.footerListe ul li{
+    margin: 20px 5px;
+    font-size: 14px;
+ }
+ .colone1{
+     height: 100%;
+     /* padding-left: 30px; */
+     margin-left: -70px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: start;
+    }
+    .colone1 p,.colone5 p{
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+    }
+    .colone5{
+        padding-right: 10px;
+        margin-left: 50px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .colone5 input{
+        background-color: transparent;
+        border: 1px solid #abb7c4;
+        color: #abb7c4;
+        height: 30px;
+        width: 100%;
+        margin: 20px 0px;
+}
+.colone5 p{
+    color: red;
+}
+.end{
+    /* height: 30px; */
 }

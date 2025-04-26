@@ -1,0 +1,44 @@
+.BlocMovie{
+    /* border: 1px solid #ff0; */
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 5px 0px;
+}
+.ImageMovie{
+    /* border: 1px solid #ff0; */
+    height: 300px; 
+    /* height: 100%; */
+    width: 30%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.ImageMovie img{
+    width: 100%;
+}
+.describMovie{
+    width: 70%;
+    padding: 30px 20px;
+}
+.describMovie h3{
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+.describMovie span{
+    /* border: 1px solid #0ff; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80px;
+}
+.describMovie .p{
+    margin-top: 20px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.describMovie p{
+    margin-top: 10px;
+}

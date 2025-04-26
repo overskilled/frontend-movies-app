@@ -73,6 +73,7 @@
 }
 .search-input{
     width: 100%;
+    height: 100%;
     background-color: transparent;
     color: white;
     font-family: 'Poppins', sans-serif;
@@ -303,13 +304,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: end;
+    max-width: 300px;
+    width: 300px;
 }
 .lesPoints{
     /* border: 1px solid #f00; */
     display: flex;
-    max-width: 300px;
-    width: 300px;
-    min-width: 200px;
+    justify-content: space-between;
+    width: 100%;    
 }
 .lesPoints > *{
     /* border: 1px solid #00f; */
@@ -342,67 +344,3 @@
     font-size: 10px;
 }
 /******* gestion du footer ********/
-.HomeFooter{
-    height: 400px;
-    background-image: url(http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider-bg.jpg);
-}
-.FooterHome{
-    /* border: 1px solid #0f0; */
-    height: 200px;  
-    width: 100vw;
-    /* padding-top: 40px; */
-    padding: 60px;
-    display: flex;
-    /* justify-content: space-around; */
-}
-.FooterHome > *{
-    width: 175px;
-    margin-top: 20px;
-    padding-left: 20px;
-}
-.FooterHome h4{
-    margin-bottom: 20px;
-}
-.FooterHome ul{
-    list-style: none;
-    /* border: 1px solid #fd0; */
-}
-.FooterHome ul li{
-    margin: 17px 0px;
-    font-size: 14px;
-}
-.colone1{
-    margin-left: 50px;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-around; */
-    height: 100%;
-}
-.colone1 > *{
-    margin-bottom: 60px;
-    /* border: 1px solid #ff0; */
-}
-
-.colone5{
-    width: 200px;
-}
-.colone5 input{
-    background-color: transparent;
-    border: 1px solid #abb7c4;
-    height: 30px;
-    width: 100%;
-    margin: 20px 0px;
-}
-.colone5 span{
-    color: red;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-}
-.end{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
