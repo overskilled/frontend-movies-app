@@ -1,0 +1,98 @@
+
+.Footer{
+    /* border: 1px solid #f00; */
+    padding: 10px 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+.FooterContainer{
+    /* border: 1px solid #0ff; */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 350px;
+}
+.footerListe {
+    /* border: 1px solid #ff0; */
+    display: flex;
+    padding-left: 0;
+    justify-content: space-between;
+    width: 100%;
+}
+.footerListe h4 {
+    text-transform: uppercase;
+    color: white;
+}
+.footerListe li:nth-child(1) {
+    margin-right: 60px;
+    width: auto;
+    /* border: 1px solid #0ff; */
+}
+.footerListe li:nth-child(5) {
+    width: 300px;
+}
+.footerListe li{
+    /* border: 1px solid #0f0; */
+    /* margin-right: 5px; */
+    list-style: none;
+    width: 200px;
+}
+.footerListe ul{
+    /* border: 1px solid #0f0; */
+    height: 100%;
+    width: 150px;
+    list-style: none;
+}
+.footerListe ul li{
+    margin: 20px 5px;
+    font-size: 14px;
+ }
+.colone1{
+    /* border: 1px solid #ff00ff; */
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+.colone1 p span {
+    font-size: 24px;
+    padding-left: 10px;
+}
+.colone1 p,.colone5 p{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.colone5{
+    /* border: 1px solid #0f0; */
+    width: auto;
+    padding-right: 10px;
+    /* width: 100%; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.colone5 input{
+    background-color: transparent;
+    border: 1px solid #abb7c4;
+    color: #abb7c4;
+    height: 30px;
+    width: 100%;
+    margin: 20px 0px;
+}
+.colone5 p{
+    color: red;
+}

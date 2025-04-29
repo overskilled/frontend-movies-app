@@ -1,33 +1,47 @@
 .Home{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 0px 20px;
     overflow: hidden;
 }
 .Home header{
+    /* width: 100%;
+    background-image: url(http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider-bg.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 650px;
+    padding: 30px 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden; */
     width: 100%;
     background-image: url(http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider-bg.jpg);
-    height: 500px;
-    padding: 20px;
+    height: 550px;
+    margin-bottom: 30px;
+    padding: 40px 30px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     overflow: hidden;
 }
+.navcontaine{
+    width: 100%;
+    display: flex;
+}
 .Home nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    
 }
 .nav-list1{
     list-style: none;
     display: flex;
-    /* border: 1px solid #ff0; */
-    margin-left: -150px;
 }
 .nav-list1 a{
     text-decoration: none;
@@ -65,9 +79,11 @@
 /*****  gestion de la barre de recherche ******/
 .SearchBar{
     display: flex;
-    width: 100%;
+    flex-grow: 1;
     height: 40px;
-    margin-top: 30px;
+    width: 100%;
+    /* height: 40px; */
+    margin: 10px 0px;
     background-color: #233a50;
     border: 4px solid #000;
 }
@@ -82,6 +98,7 @@
     padding-left: 20px;
 }
 .SearchBar select{
+    height: 100%;
     background-color: transparent;
     border: none;
     border-right: 1px solid #000;
@@ -99,7 +116,7 @@
     align-items: center;
     width: 100%;
     font-size: small;
-    margin: 10px 0px;
+    margin: 10px 0px 20px;
 }
 .follow .social-list{
     list-style: none;
@@ -114,26 +131,34 @@
 }
 /**********gestion de la carosselle ***********/
 .tendance{
+    /* border: 1px solid #f0f; */
     display: flex;
     align-items: center;
     justify-content: center;
+    /* padding: 20px 0px; */
     width: 100%;
+    height: 70%;
 }
 .Caroussel{
+    /* border: 1px solid #ff0; */
     display: flex;
-    justify-content: start;
-    align-items: center;
+    justify-content: space-between;
+    align-items: start;
     width: 100%;
-    height: 300px;
-    margin-top: 20px;
+    height: 100%;
     overflow: scroll;
     scrollbar-width: none;
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 .Caroussel li{
-    margin: 0px 10px;
+    /* border: 1px solid #ff0; */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* padding: 0px 20px; */
+    width: 100%;
+    height: 100%;
+    margin: 0px 5px;
 }
 /********* gerons le main ************/
 .mainHome1{
@@ -160,43 +185,28 @@
     padding-top: 20px;
 }
 /******* gestions des sections *******/
-.section1{
+.section1, .section2 {
+    /* border: 1px solid #ff0; */
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* padding: 0px 20px; */
     width: 100%;
-    /* border: 1px solid #ff0; */
 }
-.listeSection1{
+.listeSection1, .listeSection2 {
+    /* border: 1px solid #0f0; */
     display: flex;
+    justify-content: start;
     overflow: scroll;
     width: 100%;
-    /* border: 1px solid #0f0; */
     margin-top: 20px;
     padding-left: 0;
     scrollbar-width: none;
     list-style: none;
 }
-.listeSection1 li{
-    margin: 0px 11px;
-}
-.section2{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* border: 1px solid #ff0; */
-}
-.listeSection2{
-    display: flex;
-    overflow: scroll;
-    width: 100%;
-    /* border: 1px solid #0f0; */
-    margin-top: 20px;
-    padding-left: 0;
-    scrollbar-width: none;
-    list-style: none;
-}
-.listeSection2 li{
-    margin: 0px 11px;
+.listeSection2 li,.listeSection1 li{
+    width: 210px;
+    margin-right: 10px;
 }
 /******* destion des ASIDES ********/
 .BlocImage{
@@ -213,7 +223,7 @@
     width: 100%;
     padding: 10px 0px;
 }
-.listeCelebrities{
+.listeActor {
     list-style: none;
 }
 /****** gestion du deuxieme main ******/
@@ -306,18 +316,6 @@
     justify-content: end;
     max-width: 300px;
     width: 300px;
-}
-.lesPoints{
-    /* border: 1px solid #f00; */
-    display: flex;
-    justify-content: space-between;
-    width: 100%;    
-}
-.lesPoints > *{
-    /* border: 1px solid #00f; */
-    display: flex;
-    align-items: center;
-    width: 100%;
 }
 /****** gestion de la 4eme section *******/
 .mainHome2section4{

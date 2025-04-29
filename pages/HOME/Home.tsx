@@ -9,13 +9,12 @@ import BlocMini from '../../components/Blocs/BlocMini/BlocMini'
 import BlocActor from '../../components/Blocs/BlocActor/BlocActor'
 import BlocFilm from '../../components/Blocs/BlocFilm/BlocFilm'
 import BlocPoint from '../../components/Blocs/Bloc3Points/BlocPoint'
+import Footer from '../../components/Footer/Footer'
 
 export default function Home() {
     const [inputValue, setInputValue] = useState<string>('') ;
-    const [email, setEmail] = useState<string>('') ;
     const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value) ;
-        setEmail(e.target.value);
     } 
     const db =[
         {image:'http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider1.jpg',title:'The Last of Us',lien:'http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider1.jpg',note:'8.5'},
@@ -46,22 +45,24 @@ export default function Home() {
   return (
     <div className='Home'>
         <header>
+        <div className="navcontaine">
+        <div className='logo'><img src="http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/logo1.png" alt="logo" /></div>
         <nav>
-            <div className='logo'><img src="http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/logo1.png" alt="logo" /></div>
             <ul className='nav-list1'>
-                <li className='nav-item'><NavLink to=''>HOME <ChevronDown width='15px'/></NavLink></li>
-                <li className='nav-item'><NavLink to=''>MOVIES <ChevronDown width='15px'/></NavLink></li>
-                <li className='nav-item'><NavLink to=''>CELEBRITIES <ChevronDown width='15px'/></NavLink></li>
-                <li className='nav-item'><NavLink to=''>NEWS <ChevronDown width='15px'/></NavLink></li>
-                <li className='nav-item'><NavLink to=''>COMMUNITY <ChevronDown width='15px'/></NavLink></li>
+                <li className='nav-item'><NavLink to='/'>HOME </NavLink></li>
+                <li className='nav-item'><NavLink to='/movie'>MOVIES </NavLink></li>
+                <li className='nav-item'><NavLink to='/celebritie'>CELEBRITIES </NavLink></li>
+                <li className='nav-item'><NavLink to='/new'>NEWS </NavLink></li>
+                <li className='nav-item'><NavLink to='/profile'>COMMUNITY </NavLink></li>
             </ul>
             <ul className='nav-list2'>
-                <li className='nav-item'><NavLink to=''>PAGES <ChevronDown width='15px'/></NavLink></li>
+                <li className='nav-item'><NavLink to=''>PAGES </NavLink></li>
                 <li className='nav-item'><NavLink to=''>HELP</NavLink></li>
                 <li className='nav-item'><NavLink to=''>LOG IN</NavLink></li>
                 <li className='nav-itemU'><NavLink to=''>SIGN UP</NavLink></li>
             </ul>
         </nav>
+        </div>
         <div className='SearchBar'>
             <select name="inputSelect" id="inputSelect">
                 <option value="SHOW">TV SHOW</option>
@@ -119,7 +120,7 @@ export default function Home() {
                     <h4>spotlight CELEBRITIES</h4>
                     <hr style={{width:'93%'}}/>
                 </div>
-                <ul className="listeCelebrities">
+                <ul className="listeActor">
                     {dbActor.map((item,index)=>(
                         <li key={index}><BlocActor image={item.image} name={item.name} role={item.role} /></li>
                     ))}
@@ -192,54 +193,7 @@ export default function Home() {
                 </div>
             </section>
         </main>
-        <footer className="HomeFooter">
-            <div className="FooterHome">
-                <div className="colone1">
-                    <div className='logofooter'><img src="http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/logo1.png" alt="logo" /></div>
-                    <span>Grand moullin, DOUALA <br /> New York, NY 10001</span>
-                    <p>Call us: (+237) 658341359</p>
-                </div>
-                <div className="colone2">
-                    <h4>RESOURCES</h4>
-                    <ul>
-                        <li>About</li>
-                        <li>Blockbuster</li>
-                        <li>Contact us</li>
-                        <li>Forums</li>
-                        <li>Blog</li>
-                        <li>Help Center</li>
-                    </ul>
-                </div>
-                <div className="colone3">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li>Terms of Use</li>
-                        <li>Privacy</li>
-                        <li>Security</li>
-                    </ul>
-                </div>
-                <div className="colone4">
-                    <h4>Account</h4>
-                    <ul>
-                        <li>My Account</li>
-                        <li>Watchlist</li>
-                        <li>Collections</li>
-                        <li>User guide</li>
-                    </ul>
-                </div>
-                <div className="colone5">
-                    <h4>Newsettler</h4>
-                    <p>Subscribe to our newsletter system now
-                    to get latest news from us.</p>
-                    <input type="text" placeholder='Ente your email...' value={email} onChange={handlechange} />
-                    <span>SUBSCRITE NOW <ChevronRight /></span>
-                </div>
-            </div>
-            <hr style={{marginTop:'40px'}}/>
-            <div className="end">
-                <p>© fais par Andy</p>
-            </div>
-        </footer>
+        <Footer />
     </div>
   )
 }

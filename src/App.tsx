@@ -4,7 +4,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from '../pages/HOME/Home'
 import Movie from '../pages/Movie/Movie'
 import './App.css'
-import Form from '../components/Form/Form'
+import Celebritie from '../pages/Celebritie/Celebritie'
+import New from '../pages/New/New'
+import Community from '../pages/Community/Community'
 
 export default function App() {
   return (
@@ -12,7 +14,9 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Home />} /> 
         <Route path='/movie' element={<Movie />} />
-        <Route path='/form' element={<Form />} />
+        <Route path='/celebritie' element={<Celebritie />} />
+        <Route path='/new' element={<New />} />
+        <Route path='/profile' element={<Community />} />
       </Routes>
     </BrowserRouter>
   )

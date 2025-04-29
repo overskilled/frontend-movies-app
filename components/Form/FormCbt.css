@@ -1,0 +1,63 @@
+.FormCbt {
+    /* border: 1px solid #fff; */
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'OpenSans', sans-serif;
+    line-height: 1.5;
+}
+.FormCbtContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #0b1a2a;
+    /* align-items: start; */
+    width: 300px;
+    height: 400px;
+    padding: 5px 20px;
+    border: 3px solid #0f2133;
+    /* border: 1px solid #0ff; */
+}
+.FormCbtContainer input {
+    width: 96%; 
+}
+.FormCbtContainer * {
+    width: 100%;
+    outline: none;
+    height: 40px;
+    padding: 5px;
+    color: #abb7c4;
+    background-color: #233a50;
+    border: none;
+}
+.FormCbtContainer ::placeholder{
+    color: #abb7c4;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+.FormCbtContainer label{
+    font-size: 14px;
+    margin-top: 10px;
+    background-color: transparent;
+}
+.doubleSelectFormCbt{
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 20px;
+    /* border: 1px solid #ff0 */
+}
+.doubleSelectFormCbt select{
+    width: 40%;
+}
+.FormCbtContainer button{
+    background-color: red;
+    color: white;
+    /* margin-top: 20px; */
+    margin-bottom: 0px;
+}
+.Celebritie__aside img {
+    margin: 20px 0px;
+}

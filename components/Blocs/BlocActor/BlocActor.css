@@ -1,44 +1,38 @@
-.BlocActor{
+.BlocActor {
+    /* border: 1px solid #0ff; */
+    display: flex;
     width: 100%;
-    height: 70px;
-    padding: 10px;
-    padding-left: 0;
+    height: 80px;
+}
+
+.ImageActore {
+    width: 30%;
+    /* border: 1px solid #ff0; */
+    overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 4px;
 }
-.ImageActore{
-    padding-top: 0;
-    overflow: hidden;
-    margin-right: 10px;
-    width: 70px;
-    min-width:70px;
-    height: 70px;
-    min-height: 70px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .5);
-}
-.ImageActore img{
-    object-fit: cover;
-    object-position: center;
+.ImageActore img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
-.descriptionBlocActor{
-    width: 100%;
+
+.descriptionBlocActor {
     display: flex;
     flex-direction: column;
+    padding-left: 10px;
     justify-content: center;
-    align-items: start;
-    overflow: hidden;
 }
-.descriptionBlocActor h6{
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-}
-.descriptionBlocActor span{
-    font-size: 12px;
 
+.descriptionBlocActor h6 {
+    font-size: 14px;
+}
+.descriptionBlocActor h6 a {
+    transition: color .3s ease-in-out;
+}
+.BlocActor:hover h6 a {
+    color: #9eeb47;
 }
