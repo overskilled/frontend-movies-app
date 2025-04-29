@@ -1,12 +1,12 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 // import Home from '../pages/Home/Home'
-import Home from '../pages/HOME/Home'
-import Movie from '../pages/Movie/Movie'
+import Home from './pages/HOME/Home'
+import Movie from './pages/Movie/Movie'
 import './App.css'
-import Celebritie from '../pages/Celebritie/Celebritie'
-import New from '../pages/New/New'
-import Community from '../pages/Community/Community'
+import Celebritie from './pages/Celebritie/Celebritie'
+import New from './pages/New/New'
+import Community from './pages/Community/Community'
 
 export default function App() {
   return (
