@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+// import React from 'react'
 import { Blocks, ChevronDown,ChevronRight,List } from 'lucide-react'
 import './Movie.css'
 import BlocMovie from '../../components/Blocs/BlocMovie/BlocMovie';
