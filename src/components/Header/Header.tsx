@@ -9,17 +9,17 @@ type myComponent = {
     align: string
 }
 
-export default function Header({titre,align, smallTitle}:myComponent) {
-    const [inputValue, setInputValue] = useState<string>('') ;
+export default function Header({ titre, align, smallTitle }: myComponent) {
+    const [inputValue, setInputValue] = useState<string>('');
     const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value) ;
-    } 
-  return (
-    <div className='Header'>
-        <header>
-            <div className="HeaderNav">
-                <div className='logo'><img src="http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/logo1.png" alt="logo" /></div>
-                <nav>
+        setInputValue(e.target.value);
+    }
+    return (
+        <div className='Header'>
+            <header>
+                <div className="HeaderNav">
+                    <div className='logo'><img src="/logo-movies.png" alt="logo" /></div>
+                    <nav>
                         <ul className='nav-list1'>
                             <li className='nav-item'><NavLink to='/'>HOME </NavLink></li>
                             <li className='nav-item'><NavLink to='/movie'>MOVIES </NavLink></li>
@@ -33,28 +33,28 @@ export default function Header({titre,align, smallTitle}:myComponent) {
                             <li className='nav-item'><NavLink to=''>LOG IN</NavLink></li>
                             <li className='nav-itemU'><NavLink to=''>SIGN UP</NavLink></li>
                         </ul>
-                </nav>
-            </div>
-            <div className="Bar">
-                <div className='SearchBar'>
-                    <select name="inputSelect" id="inputSelect">
-                        <option value="SHOW">TV SHOW</option>
-                        <option value="REIGIEUX">REIGIEUX</option>
-                        <option value="ROMANTIQUE">ROMANTIQUE</option>
-                        <option value="PERVERS">PERVERS</option>
-                        <option value="INTELECT">INTELECT</option>
-                    </select>
-                    <input type="text" placeholder='Enter your movies' className='search-input' value={inputValue} onChange={handlechange}/>
-                    <button className='search-button'><Search  color='white'/></button>
+                    </nav>
                 </div>
-            </div>
-            <div className="HeaderTitle" >
-                <div className="HeaderTitleContainer" style={{alignItems:`${align}`}}>
-                    <h1>{titre}</h1>
-                    <p><NavLink to=''>Home</NavLink> <ChevronRight  style={{margin:'0px 10px',width:'15 px'}}/> {smallTitle}</p>
+                <div className="Bar">
+                    <div className='SearchBar'>
+                        <select name="inputSelect" id="inputSelect">
+                            <option value="SHOW">TV SHOW</option>
+                            <option value="REIGIEUX">REIGIEUX</option>
+                            <option value="ROMANTIQUE">ROMANTIQUE</option>
+                            <option value="PERVERS">PERVERS</option>
+                            <option value="INTELECT">INTELECT</option>
+                        </select>
+                        <input type="text" placeholder='Enter your movies' className='search-input' value={inputValue} onChange={handlechange} />
+                        <button className='search-button'><Search color='white' /></button>
+                    </div>
                 </div>
-            </div>
-        </header>
-    </div>
-  )
+                <div className="HeaderTitle" >
+                    <div className="HeaderTitleContainer" style={{ alignItems: `${align}` }}>
+                        <h1>{titre}</h1>
+                        <p><NavLink to=''>Home</NavLink> <ChevronRight style={{ margin: '0px 10px', width: '15 px' }} /> {smallTitle}</p>
+                    </div>
+                </div>
+            </header>
+        </div>
+    )
 }
