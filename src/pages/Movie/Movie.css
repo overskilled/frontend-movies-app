@@ -10,7 +10,7 @@
 
 /* gestion du main */
 .mainMovie {
-    border: 1px solid #00f;
+    /* border: 1px solid #00f; */
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -29,7 +29,7 @@
     align-items: center;
     /* padding-top: 20px; */
     width: 25%;
-    border: 1px solid #ff0;
+    /* border: 1px solid #ff0; */
     overflow: hidden;
 }
 /*  gestion de la section */

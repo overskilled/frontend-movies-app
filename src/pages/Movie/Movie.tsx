@@ -7,10 +7,10 @@ import Form from '../../components/Form/Form';
 import BlocPoint from '../../components/Blocs/Bloc3Points/BlocPoint';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
-import { useMovie } from '../../hooks/useMovie';
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getAllMovies, Movies, PaginatedResponse } from '../../api/endpoints/movie';
+// import { useMovie } from '../../hooks/useMovie';
+// import { useState } from 'react';
+// import { useQuery } from '@tanstack/react-query';
+// import { getAllMovies, Movies, PaginatedResponse } from '../../api/endpoints/movie';
 
 
 export default function Movie() {
@@ -22,18 +22,18 @@ export default function Movie() {
         { image: 'http://busterhtml.mbkip3ms9u-e92498n216kr.p.temp-site.link/images/uploads/slider1.jpg', title: 'andyFilm', note: '6.7', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, dolorum, facere illum quibusdam dignissimos officia veritatis quaerat perspiciatis cum modi deserunt molestias minima. Molestias facilis ullam atque, quia tempore quibusdam.' }
     ]
 
-    const [page, setPage] = useState(1)
-    const [limit, setLimit] = useState(10)
+    // const [page, setPage] = useState(1)
+    // const [limit, setLimit] = useState(10)
 
-    const { data, isLoading, error } = useQuery<PaginatedResponse<any>>({
-        queryKey: ['movies', { page, limit }],
-        queryFn: () => getAllMovies({ page, limit })
-    })
+    // const { data, isLoading, error } = useQuery<PaginatedResponse<any>>({
+    //     queryKey: ['movies', { page, limit }],
+    //     queryFn: () => getAllMovies({ page, limit })
+    // })
 
-    if (isLoading) return <p>Loading movies...</p>
-    if (error) return <p>Error loading movies</p>
+    // if (isLoading) return <p>Loading movies...</p>
+    // if (error) return <p>Error loading movies</p>
 
-    console.log("Fetched movies: ", data)
+    // console.log("Fetched movies: ", data)
 
 
     return (
