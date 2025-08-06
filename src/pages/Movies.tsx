@@ -48,8 +48,10 @@ export default function Movies() {
   const [inputValue, setInputValue] = useState<string>("");
   const [searchL, setSearchL] = useState<Movie[]>([]);
   const [movieL, setMovieL] = useState<Movie[]>([]);
+  const [listeL, setListeL] = useState<Movie[]>([]);
   const [paginationvalue, setPaginationValue] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
+
 
   useEffect(() => {
     const getBibliotheque = async () => {
@@ -67,16 +69,35 @@ export default function Movies() {
 
     getBibliotheque();
   }, [selectedGenre]);
+  useEffect(() => {
+    const getBibliotheque = async () => {
+      try {
+        const res = await fetch(
+        `https://backend-movie-api-afne.onrender.com/movies?page=1&limit=10`
+        );
+        const resJson = await res.json();
+        const liste: Movie[] = resJson.data;
+        setMovieL(liste); // met à jour l'état
+        console.log(liste)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getBibliotheque();
+  }, []);
 
 useEffect(() => {
   const getBibliotheque = async () => {
     try {
+      setMovieL(listeL)
       setLoading(true);
       const res = await fetch(
-        `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue}&limit=10`
+        `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue + 1}&limit=10`
       );
       const resJson = await res.json();
-      setMovieL(resJson.data);
+      setListeL(resJson.data);
+      console.log(resJson.data)
     } catch (err) {
       console.log(err);
     } finally {
