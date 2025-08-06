@@ -4,7 +4,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  type CarouselApi,
+  // type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -130,8 +130,8 @@ export default function Home() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
-  const [api, setApi] = useState<CarouselApi>();
-
+  // const [api, setApi] = useState<CarouselApi>();
+  // console.log(api)
   return (
     <div className="flex flex-col w-full px-4 pb-2 h-screen">
       <div className="flex flex-col w-full overflow-y-auto h-full scrollbar-none relative  ">
@@ -233,7 +233,7 @@ export default function Home() {
               <Instagram size={20} />
             </div>
             <Carousel
-              setApi={setApi}
+              // setApi={setApi}
               opts={{ loop: true }}
               plugins={[Autoplay({ delay: 2000 })]}
               // className="w-full h-full py-4 flex "
