@@ -1,5 +1,7 @@
 import Footer from "@/components/mine/Footer";
 import Formulaire from "@/components/mine/Formulaire";
+import Login from "@/components/mine/Login";
+import MoviePagination from "@/components/mine/Pagination";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,12 +10,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  // PaginationItem,
+  // PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import {
   Select,
   SelectContent,
@@ -38,11 +48,18 @@ interface Movie {
   imdb: { rating: number };
   plot: string;
 }
+// interface Paginations {
+//   totalPages: number,
 
+// }
 export default function Movies() {
   const [selectedGenre, setSelectedGenre] = useState<string>("");
   const [inputValue, setInputValue] = useState<string>("");
   const [searchL, setSearchL] = useState<Movie[]>([]);
+  const [movieL, setMovieL] = useState<Movie[]>([]);
+  const [paginationvalue, setPaginationValue] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const getBibliotheque = async () => {
       try {
@@ -60,9 +77,34 @@ export default function Movies() {
     getBibliotheque();
   }, [selectedGenre]);
 
+useEffect(() => {
+  const getBibliotheque = async () => {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue}&limit=10`
+      );
+      const resJson = await res.json();
+      setMovieL(resJson.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  getBibliotheque();
+}, [paginationvalue]);
+
+
+  const handleToggleSignMode = () => {
+    setIsForSign((prev) => !prev);
+  };
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+  const [isForSign, setIsForSign] = useState<boolean>(false)
   return (
     <div className="flex flex-col w-full pb-2 h-screen">
       <div className="flex flex-col w-full px-2 overflow-y-auto h-full scrollbar-none relative  ">
@@ -73,32 +115,38 @@ export default function Movies() {
             <img src="/iconeHeader.png" alt="logo" />
             <div className="flex gap-2">
               <NavigationMenu>
-                <NavigationMenuList className="gap-4 *:text-md *:font-semibold *:uppercase *:hover:text-white *:duration-500">
+                <NavigationMenuList className="gap-4 *:text-md *:font-semibold *:uppercase *:hover:text-white *:text-gray-300 *:hover:underline *:hover:underline-offset-8 *:duration-500">
                   <NavigationMenuItem>
-                    <NavLink to="/">home</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/">home</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/movies">movies</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/movies">movies</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/celebrities">celebrities</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/celebrities">celebrities</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/news">news</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/news">news</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/commity">community</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/commity">community</NavLink>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
             <div className="flex gap-2 *:text-gray-300">
-              <Button className="bg-transparent rounded-full hover:scale-105 hover:bg-red-700 transition cursor-pointer duration-300 ease-in-out">
-                <NavLink to="">LOG IN</NavLink>
-              </Button>
-              <Button className="bg-red-700 rounded-full hover:scale-105 hover:bg-transparent transition cursor-pointer duration-300 ease-in-out">
-                <NavLink to="">SIGN UP</NavLink>
-              </Button>
+              <Dialog>
+                <DialogTrigger className="bg-transparent rounded-full h-8 w-20 hover:scale-105 hover:bg-red-700 transition cursor-pointer duration-300 ease-in-out">LOG IN</DialogTrigger>
+                <DialogContent className="min-w-200 h-100 bg-sky-950 backdrop-blur-md border-none shadow-2xl">
+                  <Login isForSign={false} onToggleSignMode={handleToggleSignMode} />
+                </DialogContent>
+              </Dialog>
+              <Dialog>
+                <DialogTrigger className="bg-red-700 rounded-full h-8 w-20 hover:scale-105 hover:bg-transparent transition cursor-pointer duration-300 ease-in-out">SIGN UP</DialogTrigger>
+                <DialogContent className="min-w-200 bg-sky-950 backdrop-blur-md border-none shadow-2xl">
+                  <Login isForSign={true} onToggleSignMode={handleToggleSignMode} />
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
           {/* search bar */}
@@ -204,88 +252,107 @@ export default function Movies() {
             </div>
             {/* section movie */}
             <div className="flex flex-col w-full min-h-100 mt-5 *:my-2 max-h-250 overflow-auto scrollbar-none">
-              {searchL.length == 0 ? (
-                [1, 2, 3, 4, 5].map((index) => (
-                  <Card className="flex flex-row h-50 gap-0 p-0 bg-transparent border-none rounded-none" key={index}>
-                    <div className="flex h-full w-2/10">
-                      <Skeleton className="w-full h-full rounded-none bg-[#4280bf] backdrop-blur-lg" />
-                    </div>
-                    <div className="flex flex-col justify-between pb-4 w-8/10 h-full text-gray-400">
-                      <CardHeader>
-                        <CardTitle className="gap-2">
-                          <Skeleton className="w-[80%] h-4 mb-2 rounded-l-none bg-[#4280bf] mt-2" />
-                          <Skeleton className="w-[10%] h-2 rounded-l-none bg-[#4280bf]" />
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="pl-6">
-                        <Skeleton className="w-full h-4 mb-3 rounded-l-none bg-[#4280bf]" />
-                        <Skeleton className="w-full h-4 mb-3 rounded-l-none bg-[#4280bf]" />
-                        <Skeleton className="w-full h-4 mb-3 rounded-l-none bg-[#4280bf]" />
-                      </CardContent>
-                      <CardFooter>
-                        <Skeleton className="w-[90%] h-4 rounded-l-none bg-[#4280bf]" />
-                      </CardFooter>
-                    </div>
-                  </Card>
-                ))
-              ) : (
-                searchL.map((el, index) => (
-                <Card className="flex flex-row h-50 gap-0 p-0 bg-transparent rounded-none border-none" key={index}>
-                  <div className="flex h-full w-2/10">
-                    <img
-                      src={el.poster || "/andy.jpg"}
-                      alt="andy"
-                      className="object-cover w-full h-full"
-                    />
-                  </div>
-                  <div className="flex flex-col justify-between pb-4 w-8/10 h-full text-gray-400">
-                    <CardHeader>
-                      <CardTitle>
-                        <p className="text-xl uppercase text-white">
-                            {el.title}
-                        </p>
-                        <p className="flex gap-2 items-center text-xs">
-                          <Star size={16} /> {el.imdb.rating}/10
-                        </p>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="pl-6">{el.plot}</CardContent>
-                    <CardFooter>
-                      principal actor: andy yvan la famille
-                    </CardFooter>
-                  </div>
-                </Card>
-              )))}
+              {loading 
+                ? [1, 2, 3, 4, 5].map((index) => (
+                    <Card
+                      className="flex flex-row min-h-50 gap-0 p-0 bg-transparent border-none rounded-none"
+                      key={index}
+                    >
+                      <div className="flex h-full w-2/10">
+                        <Skeleton className="w-full h-full rounded-none bg-[#4280bf] backdrop-blur-lg" />
+                      </div>
+                      <div className="flex flex-col justify-between pb-4 w-8/10 h-full text-gray-400">
+                        <CardHeader>
+                          <CardTitle className="gap-2">
+                            <Skeleton className="w-[80%] h-4 mb-2 rounded-l-none bg-[#4280bf] mt-2" />
+                            <Skeleton className="w-[10%] h-2 rounded-l-none bg-[#4280bf]" />
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="pl-6">
+                          <Skeleton className="w-full h-4 mb-3 rounded-l-none bg-[#4280bf]" />
+                          <Skeleton className="w-full h-4 mb-3 rounded-l-none bg-[#4280bf]" />
+                          <Skeleton className="w-full h-4 mb-3 rounded-l-none bg-[#4280bf]" />
+                        </CardContent>
+                        <CardFooter>
+                          <Skeleton className="w-[90%] h-4 rounded-l-none bg-[#4280bf]" />
+                        </CardFooter>
+                      </div>
+                    </Card>
+                  ))
+                : movieL.map((el, index) => (
+                    <Card
+                      className="flex flex-row min-h-60 gap-0 p-0 bg-transparent rounded-none border-none"
+                      key={index}
+                    >
+                      <div className="flex h-full w-2/10">
+                        <img
+                          src={el.poster || "/andy.jpg"}
+                          alt="andy"
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-between pb-4 w-8/10 h-full text-gray-400">
+                        <CardHeader>
+                          <CardTitle>
+                            <p className="text-xl uppercase text-white">
+                              {el.title}
+                            </p>
+                            <p className="flex gap-2 items-center text-xs">
+                              <Star size={16} /> {el.imdb.rating}/10
+                            </p>
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="pl-6">{el.plot}</CardContent>
+                        <CardFooter>
+                          principal actor: andy yvan la famille
+                        </CardFooter>
+                      </div>
+                    </Card>
+                  ))}
             </div>
           </section>
           <aside className="flex flex-col w-3/10 pl-8">
-            <Formulaire />
+            {isForSign == true ? <Formulaire />:''}
             <div className="flex my-5">
-                <img src="/sideImage.png" alt="image"  />
+              <img src="/sideImage.png" alt="image" />
             </div>
             <div className="flex w-full flex-col  justify-between h-full">
               <div className="flex w-full flex-col">
-                  <h1 className="text-xl text-gray-400" >FIND IN FACEBOOK</h1>
-                  <hr className="w-full" />
+                <h1 className="text-xl text-gray-400">FIND IN FACEBOOK</h1>
+                <hr className="w-full" />
               </div>
               <div className="flex w-full flex-col mb-6">
-                  <h1 className="text-xl text-gray-400 flex gap-1 items-center">tweet to us <ChevronRight size={17} className="mt-2" /></h1>
-                  <hr className="w-full" />
+                <h1 className="text-xl text-gray-400 flex gap-1 items-center">
+                  tweet to us <ChevronRight size={17} className="mt-2" />
+                </h1>
+                <hr className="w-full" />
               </div>
             </div>
           </aside>
         </main>
         <main className="flex justify-center items-center mt-10">
-            <Pagination>
-                <PaginationPrevious className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2" />
-                <PaginationContent>
-                    {[1,2,3,4,5,6,7,8].map((el) => <PaginationItem className="" value={el}>{el}</PaginationItem>)}
-                </PaginationContent>
-                <PaginationNext className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2" />
-            </Pagination>
+          {/* <Pagination>
+            <PaginationPrevious
+              className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2"
+              onClick={() =>
+                paginationvalue > 1 && setPaginationValue(paginationvalue - 1)
+              }
+            /> */}
+            {/* <PaginationContent>
+              {paginationvalue}
+            </PaginationContent>
+            <PaginationNext
+              className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2"
+              onClick={() =>
+                paginationvalue < 121 && setPaginationValue(paginationvalue + 1)
+              }
+            />
+          </Pagination> */}
+
+          <MoviePagination paginationvalue={paginationvalue} setPaginationValue={setPaginationValue} />
         </main>
         <footer>
-            <Footer />
+          <Footer />
         </footer>
       </div>
     </div>

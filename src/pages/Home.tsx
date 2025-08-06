@@ -141,21 +141,21 @@ export default function Home() {
             <img src="/iconeHeader.png" alt="logo" />
             <div className="flex gap-2">
               <NavigationMenu>
-                <NavigationMenuList className="gap-4 *:text-md *:font-semibold *:uppercase *:hover:text-white *:duration-500">
+                <NavigationMenuList className="gap-4 *:text-md *:font-semibold *:uppercase *:hover:text-white *:text-gray-300 *:hover:underline *:hover:underline-offset-8 *:duration-500">
                   <NavigationMenuItem>
-                    <NavLink to="/">home</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/">home</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/movies">movies</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/movies">movies</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/celebrities">celebrities</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/celebrities">celebrities</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/news">news</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/news">news</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink to="/commity">community</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/commity">community</NavLink>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
