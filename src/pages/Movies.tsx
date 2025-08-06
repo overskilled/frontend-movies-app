@@ -322,24 +322,6 @@ useEffect(() => {
           </aside>
         </main>
         <main className="flex justify-center items-center mt-10 duration-1000">
-          {/* <Pagination>
-            <PaginationPrevious
-              className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2"
-              onClick={() =>
-                paginationvalue > 1 && setPaginationValue(paginationvalue - 1)
-              }
-            /> */}
-            {/* <PaginationContent>
-              {paginationvalue}
-            </PaginationContent>
-            <PaginationNext
-              className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2"
-              onClick={() =>
-                paginationvalue < 121 && setPaginationValue(paginationvalue + 1)
-              }
-            />
-          </Pagination> */}
-
           <MoviePagination paginationvalue={paginationvalue} setPaginationValue={setPaginationValue} />
         </main>
         <footer>

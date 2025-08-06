@@ -441,55 +441,6 @@ export default function Home() {
                   </CardContent>
                 </Carousel>
               </div>
-              {/* <div className="flex h-60 p-2 ">
-                <Carousel
-                  plugins={[plugin.current]}
-                  className="w-full max-ws"
-                  onMouseEnter={plugin.current.stop}
-                  onMouseLeave={plugin.current.reset}
-                >
-                  <CardContent className="flex overflow-auto scrollbar-none h-full">
-                    {.map((el, index) => (
-                      <CarouselItem
-                        key={index}
-                        className="overflow-hidden max-w-50"
-                      >
-                        <div className="flex h-full w45">
-                          <Card
-                            className={`flex items-end w-full group relative p-0 opacity-80 overflow-hidden rounded-sm object-corver`}
-                          >
-                            <CardContent
-                              className={`${el} hover:opacity-100 opacity-80 duration-500 h-full w-full p-0 m-0`}
-                            ></CardContent>
-                            <CardFooter className="flex flex-col gap-1  bottom-0 px-2 pb-3 h-12 absolute opacity-100">
-                              <div className="w-full text-xs  text-gray-500 uppercase flex flex-col justify-end group-hover:text-white duration-500">
-                                {ha !== "1" ? (
-                                  <Skeleton className="w-full bg-gray-300 h-4" />
-                                ) : (
-                                  "votre titre mickey et andy"
-                                )}
-                              </div>
-                              <div className="w-full text-xs flex items-center gap-2 text-gray-500 uppercase group-hover:text-white duration-500">
-                                {ha !== "1" ? (
-                                  <Skeleton className="w-1/4 bg-gray-300 h-4" />
-                                ) : (
-                                  <>
-                                    <Star
-                                      size={18}
-                                      className="text-amber-500 duration-500 group-hover:text-yellow-500"
-                                    />
-                                    8.5/10
-                                  </>
-                                )}
-                              </div>
-                            </CardFooter>
-                          </Card>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CardContent>
-                </Carousel>
-              </div> */}
             </section>
           </section>
           <aside className="gap-4 w-30/100 pl-4">
@@ -548,18 +499,6 @@ export default function Home() {
             </div>
           </aside>
         </main>
-        {/* <main className="w-full flex">
-          <div className="w-7/10 h-100 bg-black">
-            <video src="#"></video>
-          </div>
-          <div className="w-3/10">
-            <Carousel orientation="vertical" className=" relative border h-full">
-              <CarouselContent>a</CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </div>
-        </main> */}
         <main className="w-full flex my-5">
           <section className="w-7/10 flex min-h-150 flex-col">
             <div className="w-full h-full *:mb-5">
@@ -623,53 +562,3 @@ export default function Home() {
     </div>
   );
 }
-
-// const [email, setEmail] = useState<string>("");
-//   const [selectedGenre, setSelectedGenre] = useState<string>("Comedy");
-//   const [DB, setDB] = useState<Movie[]>(() => {
-//     try {
-//       const db = localStorage.getItem("DB");
-//       return db ? JSON.parse(db) : [];
-//     } catch {
-//       return [];
-//     }
-//   });
-//   useEffect(() => {
-//     localStorage.setItem("DB", JSON.stringify(DB));
-//   }, [DB]);
-//   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setInputValue(e.target.value);
-//   };
-//   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setEmail(e.target.value);
-//   };
-//   useEffect(() => {
-//     const get = async () => {
-//       const res = await fetch(
-//         `https://backend-movie-api-afne.onrender.com/movies/filter?page=1&limit=50&column=genres&value=${selectedGenre}`
-//       );
-//       const livres = await res.json();
-//       const LesLivres = livres.data;
-//       console.log(LesLivres);
-//       setDB(LesLivres);
-//     };
-//     get();
-//   }, [selectedGenre]);
-//   const [searchL, setSearchL] = useState<Movie[]>(() => {
-//     try {
-//       const laliste = DB.filter((livre) => livre.plot == inputValue);
-//       return laliste ? laliste : [];
-//     } catch {
-//       return [];
-//     }
-//   });
-//   console.log();
-
-//   const [api, setApi] = useState<CarouselApi>();
-//   useEffect(() => {
-//     if (!api) return;
-//     api.on("select", () =>
-//       console.log("slide active", api.selectedScrollSnap())
-//     );
-//   }, [api]);
-//   const ha = "1";
