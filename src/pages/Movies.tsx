@@ -2,7 +2,6 @@ import Footer from "@/components/mine/Footer";
 import Formulaire from "@/components/mine/Formulaire";
 import Login from "@/components/mine/Login";
 import MoviePagination from "@/components/mine/Pagination";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -16,14 +15,6 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import {
-  Pagination,
-  PaginationContent,
-  // PaginationItem,
-  // PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import {
   Select,
   SelectContent,
@@ -281,10 +272,10 @@ useEffect(() => {
                   ))
                 : movieL.map((el, index) => (
                     <Card
-                      className="flex flex-row min-h-60 gap-0 p-0 bg-transparent rounded-none border-none"
+                      className="flex flex-row min-h-60 gap-0 p-0 bg-transparent min-w-35 rounded-none border-none"
                       key={index}
                     >
-                      <div className="flex h-full w-2/10">
+                      <div className="flex h-full min-w-2/10">
                         <img
                           src={el.poster || "/andy.jpg"}
                           alt="andy"
@@ -330,7 +321,7 @@ useEffect(() => {
             </div>
           </aside>
         </main>
-        <main className="flex justify-center items-center mt-10">
+        <main className="flex justify-center items-center mt-10 duration-1000">
           {/* <Pagination>
             <PaginationPrevious
               className="hover:bg-[#4280bf] cursor-pointer duration-300 transition-colors ease-in-out items-center h-8 mx-2"

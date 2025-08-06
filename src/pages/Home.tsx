@@ -4,7 +4,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  // type CarouselApi,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -59,7 +59,8 @@ export default function Home() {
         );
         const resJson = await res.json();
         const liste: Movie[] = resJson.data;
-        setCarouselL(liste); // met à jour l'état
+        console.log(liste)
+        setCarouselL(liste); 
       } catch (err) {
         console.log(err);
       }
@@ -129,7 +130,7 @@ export default function Home() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
-  // const [api, setApi] = useState<CarouselApi>();
+  const [api, setApi] = useState<CarouselApi>();
 
   return (
     <div className="flex flex-col w-full px-4 pb-2 h-screen">
@@ -143,19 +144,19 @@ export default function Home() {
               <NavigationMenu>
                 <NavigationMenuList className="gap-4 *:text-md *:font-semibold *:uppercase *:hover:text-white *:text-gray-300 *:hover:underline *:hover:underline-offset-8 *:duration-500">
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/">home</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/">home</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/movies">movies</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/movies">movies</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/celebrities">celebrities</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/celebrities">celebrities</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/news">news</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/news">news</NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/commity">community</NavLink>
+                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/commity">community</NavLink>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
@@ -232,7 +233,7 @@ export default function Home() {
               <Instagram size={20} />
             </div>
             <Carousel
-              // setApi={setApi}
+              setApi={setApi}
               opts={{ loop: true }}
               plugins={[Autoplay({ delay: 2000 })]}
               // className="w-full h-full py-4 flex "
@@ -255,12 +256,14 @@ export default function Home() {
                     ))
                   : carouselL.map((el, index) => (
                       <CarouselItem className="h-85 max-w-75 mx-1" key={index}>
-                        <Card className="h-full w-75 overflow-hidden shadow-2xl bg-slate-950/20 group backdrop-blur-sm p-0 bottom-0 flex justify-end hover:opacity-80 duration-500 opacity-50">
-                          <CardContent className="p-0 w-full h-full "><img src={el.poster || "andy.jpg" } alt="yess" className="w-fullh-full object-corver" /></CardContent>
-                          <CardFooter className="flex flex-col gap-2 bottom-0 absolute px-2 py-3 h-20">
-                            <p className="w-full text-gray-500 duration-500 group-hover:text-white h-4">{el.title}</p>
+                        <Card className="h-full w-75 shadow-2xl overflow-hidden bg-slate-950/20 group backdrop-blur-sm p-0 bottom-0 flex justify-end hover:opacity-80 duration-500 opacity-50">
+                        <CardContent className="w-full h-full bg-white p-0">
+                          <img src={el.poster || "andy.jpg"} alt="image"  className="m-0 w-full h-full object-cover"/>
+                        </CardContent>
+                          <CardFooter className="flex flex-col gap-2 bottom-0 px-2 py-3 h-20 absolute">
+                            <p className="group-hover:text-black text-gray-500 text-start w-full">{el.title}</p>
                             <div className="w-full text-gray-500 uppercase group-hover:text-white duration-500 text-sm flex gap-2">
-                              {el.imdb.rating} <br />
+                              <Star size={18} />{el.imdb.rating} <br />
                             </div>
                           </CardFooter>
                         </Card>
@@ -296,7 +299,7 @@ export default function Home() {
                     {comedyL.length == 0 ? (
                       [0, 1, 2, 3, 4].map((index) => (
                       <CarouselItem className="max-w-50 overflow-hidden" key={index}>
-                        <Card className="h-full w-full shadow-2xl bg-slate-950/20 group backdrop-blur-sm p-0 bottom-0 flex justify-end hover:opacity-80 duration-500 opacity-50">
+                        <Card className="h-full w-full shadow-2xl bg-slate-950/20 group backdrop-blur-sm p-0 bottom-0 flex justify-end hover:opacity-80 duration-500 opacity-50 ">
                           <CardFooter className="flex flex-col gap-2 bottom-0 px-2 py-3 h-20">
                             <Skeleton className="w-full bg-gray-300 h-4" />
                             <div className="w-full text-gray-500 uppercase group-hover:text-white duration-500 text-sm flex gap-2">
@@ -315,7 +318,7 @@ export default function Home() {
                         >
                           <div className="flex h-full w45">
                             <Card
-                              className={`flex  w-full group relative p-0 opacity-80 overflow-hidden rounded-sm object-corver`}
+                              className={`bg-slate-950/20 group backdrop-blur-sm p-0 min-w-45 overflow-hidden bottom-0 flex justify-end hover:opacity-80 duration-500 opacity-50`}
                             >
                               <CardContent className="p-0 m-0 opacity-50 bg-slate-900 group-hover:opacity-100 duration-1000">
                                 <img
@@ -397,7 +400,7 @@ export default function Home() {
                         >
                           <div className="flex h-full w45">
                             <Card
-                              className={`flex  w-full group relative p-0 opacity-80 overflow-hidden rounded-sm object-corver`}
+                              className={`bg-slate-950/20 group backdrop-blur-sm p-0 min-w-45 overflow-hidden bottom-0 flex justify-end hover:opacity-80 duration-500 opacity-50`}
                             >
                               <CardContent className="p-0 m-0 opacity-50 bg-slate-900 group-hover:opacity-100 duration-1000">
                                 <img
