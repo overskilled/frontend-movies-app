@@ -39,84 +39,83 @@ interface Movie {
   imdb: { rating: number };
   plot: string;
 }
-// interface Paginations {
-//   totalPages: number,
 
-// }
+
 export default function Movies() {
-  const [selectedGenre, setSelectedGenre] = useState<string>("");
+  const [selectedGenre, setSelectedGenre] = useState<string>("comedy");
   const [inputValue, setInputValue] = useState<string>("");
   const [searchL, setSearchL] = useState<Movie[]>([]);
   const [movieL, setMovieL] = useState<Movie[]>([]);
   const [listeL, setListeL] = useState<Movie[]>([]);
   const [paginationvalue, setPaginationValue] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-
-
-  useEffect(() => {
-    const getBibliotheque = async () => {
-      try {
-        const res = await fetch(
-          `https://backend-movie-api-afne.onrender.com/movies/filter?page=2&limit=10&column=genres&value=${selectedGenre}`
-        );
-        const resJson = await res.json();
-        const liste: Movie[] = resJson.data;
-        setSearchL(liste); // met à jour l'état
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getBibliotheque();
-  }, [selectedGenre]);
-  useEffect(() => {
-    const getBibliotheque = async () => {
-      try {
-        const res = await fetch(
-        `https://backend-movie-api-afne.onrender.com/movies?page=1&limit=10`
-        );
-        const resJson = await res.json();
-        const liste: Movie[] = resJson.data;
-        setMovieL(liste); // met à jour l'état
-        console.log(liste)
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getBibliotheque();
-  }, []);
-
-useEffect(() => {
-  const getBibliotheque = async () => {
-    try {
-      setMovieL(listeL)
-      setLoading(true);
-      const res = await fetch(
-        `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue + 1}&limit=10`
-      );
-      const resJson = await res.json();
-      setListeL(resJson.data);
-      console.log(resJson.data)
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  getBibliotheque();
-}, [paginationvalue]);
-
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isForSign, setIsForSign] = useState<boolean>(false);
+  
+  // handle
 
   const handleToggleSignMode = () => {
-    setIsForSign((prev) => !prev);
-  };
-
+    setIsForSign(!isForSign)
+  }
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-  const [isForSign, setIsForSign] = useState<boolean>(false)
+    setInputValue(e.target.value)
+  }
+  
+  // search fetch
+
+  useEffect(() => {
+    const take = async () => {
+      try {
+        const url = `https://backend-movie-api-afne.onrender.com/movies/filter?page=1&limit=10&column=genres&value=${selectedGenre}`;
+        const res = await fetch(url);
+        const resJson = await res.json();
+        const Data = resJson.data;
+        setSearchL(Data)
+        console.log('premier fetch',searchL)
+      } catch (err) {
+        console.error('votre erreur est:',err);
+      }
+    }
+    take()
+  },[selectedGenre])
+
+  useEffect(() => {
+    setSearchL((prev) =>
+      prev.filter((item) =>
+        item.title.toLowerCase().includes(inputValue.toLowerCase())
+      )
+    );
+  }, [inputValue]);
+
+  // la presentations
+
+  useEffect(() => {
+    setMovieL(listeL);
+
+    const yess = async () => {
+      const url = `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue + 1}&limit=15`
+      const res = await fetch(url);
+      const resjson = await res.json();
+      const data = resjson.data;
+      setLoading(loading == true);
+      setListeL(data)
+      console.log(data);
+    }
+    yess()
+  },[paginationvalue])
+  
+  useEffect(() => {
+    const yess = async () => {
+
+      const url = `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue}&limit=15`
+      const res = await fetch(url);
+      const resjson = await res.json();
+      const data = resjson.data;
+      setLoading(loading == true);
+      setMovieL(data)
+    }
+    yess()
+  },[])
+
   return (
     <div className="flex flex-col w-full pb-2 h-screen">
       <div className="flex flex-col w-full px-2 overflow-y-auto h-full scrollbar-none relative  ">
@@ -129,34 +128,45 @@ useEffect(() => {
               <NavigationMenu>
                 <NavigationMenuList className="gap-4 *:text-md *:font-semibold *:uppercase *:hover:text-white *:text-gray-300 *:hover:underline *:hover:underline-offset-8 *:duration-500">
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/">home</NavLink>
+                    <NavLink
+                      className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8" : ""}
+                      to="/"
+                    >
+                      home
+                    </NavLink>
                   </NavigationMenuItem>
                   <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/movies">movies</NavLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/celebrities">celebrities</NavLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/news">news</NavLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8":""} to="/commity">community</NavLink>
+                    <NavLink
+                      className={({ isActive }: { isActive: boolean }) => isActive ? "text-white underline underline-offset-8" : ""}
+                      to="/movies"
+                    >
+                      movies
+                    </NavLink>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
             <div className="flex gap-2 *:text-gray-300">
               <Dialog>
-                <DialogTrigger className="bg-transparent rounded-full h-8 w-20 hover:scale-105 hover:bg-red-700 transition cursor-pointer duration-300 ease-in-out">LOG IN</DialogTrigger>
+                <DialogTrigger className="bg-transparent rounded-full h-8 w-20 hover:scale-105 hover:bg-red-700 transition cursor-pointer duration-300 ease-in-out">
+                  LOG IN
+                </DialogTrigger>
                 <DialogContent className="min-w-200 h-100 bg-sky-950 backdrop-blur-md border-none shadow-2xl">
-                  <Login isForSign={false} onToggleSignMode={handleToggleSignMode} />
+                  <Login
+                    isForSign={false}
+                    onToggleSignMode={handleToggleSignMode}
+                  />
                 </DialogContent>
               </Dialog>
               <Dialog>
-                <DialogTrigger className="bg-red-700 rounded-full h-8 w-20 hover:scale-105 hover:bg-transparent transition cursor-pointer duration-300 ease-in-out">SIGN UP</DialogTrigger>
+                <DialogTrigger className="bg-red-700 rounded-full h-8 w-20 hover:scale-105 hover:bg-transparent transition cursor-pointer duration-300 ease-in-out">
+                  SIGN UP
+                </DialogTrigger>
                 <DialogContent className="min-w-200 bg-sky-950 backdrop-blur-md border-none shadow-2xl">
-                  <Login isForSign={true} onToggleSignMode={handleToggleSignMode} />
+                  <Login
+                    isForSign={true}
+                    onToggleSignMode={handleToggleSignMode}
+                  />
                 </DialogContent>
               </Dialog>
             </div>
@@ -264,8 +274,7 @@ useEffect(() => {
             </div>
             {/* section movie */}
             <div className="flex flex-col w-full min-h-100 mt-5 *:my-2 max-h-250 overflow-auto scrollbar-none">
-              {loading 
-                ? [1, 2, 3, 4, 5].map((index) => (
+              {loading ? [1, 2, 3, 4, 5].map((index) => (
                     <Card
                       className="flex flex-row min-h-50 gap-0 p-0 bg-transparent border-none rounded-none"
                       key={index}
@@ -324,7 +333,7 @@ useEffect(() => {
             </div>
           </section>
           <aside className="flex flex-col w-3/10 pl-8">
-            {isForSign == true ? <Formulaire />:''}
+            {isForSign == true ? <Formulaire /> : ""}
             <div className="flex my-5">
               <img src="/sideImage.png" alt="image" />
             </div>
@@ -343,7 +352,10 @@ useEffect(() => {
           </aside>
         </main>
         <main className="flex justify-center items-center mt-10 duration-1000">
-          <MoviePagination paginationvalue={paginationvalue} setPaginationValue={setPaginationValue} />
+          <MoviePagination
+            paginationvalue={paginationvalue}
+            setPaginationValue={setPaginationValue}
+          />
         </main>
         <footer>
           <Footer />

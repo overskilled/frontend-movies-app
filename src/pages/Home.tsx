@@ -130,8 +130,6 @@ export default function Home() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
-  // const [api, setApi] = useState<CarouselApi>();
-  // console.log(api)
   return (
     <div className="flex flex-col w-full px-4 pb-2 h-screen">
       <div className="flex flex-col w-full overflow-y-auto h-full scrollbar-none relative  ">
@@ -148,15 +146,6 @@ export default function Home() {
                   </NavigationMenuItem>
                   <NavigationMenuItem>
                     <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/movies">movies</NavLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/celebrities">celebrities</NavLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/news">news</NavLink>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem>
-                    <NavLink className={({ isActive }: { isActive: boolean }) => isActive ? " underline underline-offset-8":""} to="/commity">community</NavLink>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
