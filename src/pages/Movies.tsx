@@ -65,12 +65,13 @@ export default function Movies() {
   useEffect(() => {
     const take = async () => {
       try {
+        setLoading(true)
         const url = `https://backend-movie-api-afne.onrender.com/movies/filter?page=1&limit=10&column=genres&value=${selectedGenre}`;
         const res = await fetch(url);
         const resJson = await res.json();
         const Data = resJson.data;
         setSearchL(Data)
-        console.log('premier fetch',searchL)
+        setLoading(false)
       } catch (err) {
         console.error('votre erreur est:',err);
       }
@@ -89,15 +90,17 @@ export default function Movies() {
   // la presentations
 
   useEffect(() => {
+    setLoading(true)
     setMovieL(listeL);
+    setLoading(false);
 
     const yess = async () => {
-      const url = `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue + 1}&limit=15`
+      const url = `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue+1}&limit=15`
       const res = await fetch(url);
       const resjson = await res.json();
       const data = resjson.data;
-      setLoading(loading == true);
       setListeL(data)
+      console.log(loading);
       console.log(data);
     }
     yess()
@@ -105,12 +108,12 @@ export default function Movies() {
   
   useEffect(() => {
     const yess = async () => {
-
+      setLoading(true)
       const url = `https://backend-movie-api-afne.onrender.com/movies?page=${paginationvalue}&limit=15`
       const res = await fetch(url);
       const resjson = await res.json();
       const data = resjson.data;
-      setLoading(loading == true);
+      setLoading(false);
       setMovieL(data)
     }
     yess()
@@ -274,7 +277,7 @@ export default function Movies() {
             </div>
             {/* section movie */}
             <div className="flex flex-col w-full min-h-100 mt-5 *:my-2 max-h-250 overflow-auto scrollbar-none">
-              {loading ? [1, 2, 3, 4, 5].map((index) => (
+              {loading == true ? [1, 2, 3, 4, 5].map((index) => (
                     <Card
                       className="flex flex-row min-h-50 gap-0 p-0 bg-transparent border-none rounded-none"
                       key={index}
